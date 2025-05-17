@@ -198,8 +198,8 @@ class _CreateTeamPageState extends State<CreateTeamPage>
 
   @override
   Widget build(BuildContext context) {
-    final fabHeight = 56.0; // Standard FAB height
-    final bottomNavBarHeight = kToolbarHeight + 5; // Approximate BottomAppBar height
+    final fabHeight = 56.0;
+    final bottomNavBarHeight = kToolbarHeight + 5; 
 
     return Scaffold(
       backgroundColor: kDarkPrimaryBg,
@@ -266,14 +266,14 @@ class _CreateTeamPageState extends State<CreateTeamPage>
                   _buildTypeSelector(),
                   const SizedBox(height: 50),
                   _buildCreateTeamButton(),
-                  SizedBox(height: bottomNavBarHeight + fabHeight / 2 + 20), // Space for FAB and menu
+                  SizedBox(height: bottomNavBarHeight + fabHeight / 2 + 20), 
                 ],
               ),
             ),
             if (_isCardVisible) _buildDimOverlay(),
-             // Positioned menu, adjusted to be closer to FAB
+             
             Positioned(
-              bottom: 0.0, // Adjusted to be closer to FAB
+              bottom: 0.0, 
               left: 20,
               right: 20,
               child: Visibility(
@@ -401,15 +401,15 @@ class _CreateTeamPageState extends State<CreateTeamPage>
   }
 
   Widget _avatar(String assetPathOrUrl, String name) {
-    // Basic check if it's a local asset or a network/file URL for future use
+    
     bool isAsset = assetPathOrUrl.startsWith('assets/');
     ImageProvider? backgroundImage;
-    if (_logoImage != null && name == "You") { // Example for a user-added image
+    if (_logoImage != null && name == "You") { 
         backgroundImage = FileImage(_logoImage!);
     } else if (!isAsset && assetPathOrUrl.isNotEmpty) {
-        // backgroundImage = NetworkImage(assetPathOrUrl); // If using network images
+        // backgroundImage = NetworkImage(assetPathOrUrl); 
     } else if (isAsset) {
-        // backgroundImage = AssetImage(assetPathOrUrl); // If assets are valid
+        // backgroundImage = AssetImage(assetPathOrUrl); 
     }
 
     return Padding(
@@ -434,14 +434,14 @@ class _CreateTeamPageState extends State<CreateTeamPage>
 
   Widget _addMemberButton() {
     return GestureDetector(
-      onTap: _showAddMemberDialog, // Updated to show dialog
+      onTap: _showAddMemberDialog, 
       child: Padding(
-        padding: const EdgeInsets.only(left: 8.0, top: 0), // Adjusted padding for alignment
-        child: Column( // Wrap in column for alignment with avatar names
+        padding: const EdgeInsets.only(left: 8.0, top: 0), 
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 44, // Same as CircleAvatar radius * 2
+              width: 44, 
               height: 44,
               decoration: BoxDecoration(
                 color: kDarkElementBg,
