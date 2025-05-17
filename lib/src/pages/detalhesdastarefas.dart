@@ -2,25 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:math';
 
-// Enum for Task Filter
+
 enum TaskFilter { all, completed, inProgress }
 
-// Color Constants from AddTaskPage
 const Color kDarkPrimaryBg = Color(0xFF1A1A2E);
-const Color kDarkSurface = Color(0xFF16213E); // May be used for surfaces like cards
-const Color kDarkElementBg = Color(0xFF202A44); // May be used for elements within cards or dialogs
-const Color kAccentPurple = Color(0xFF7F5AF0); // Primary accent for buttons, highlights
-const Color kDarkTextPrimary = Color(0xFFFFFFFF); // For primary text
-const Color kDarkTextSecondary = Color(0xFFA0AEC0); // For secondary/hint text
+const Color kDarkSurface = Color(0xFF16213E); 
+const Color kDarkElementBg = Color(0xFF202A44); 
+const Color kAccentPurple = Color(0xFF7F5AF0); 
+const Color kDarkTextPrimary = Color(0xFFFFFFFF); 
+const Color kDarkTextSecondary = Color(0xFFA0AEC0); 
 
 class Task {
   final String id;
   final String title;
   final String time;
-  bool isCompleted; // Tornar mutável para atualização direta ou usar copyWith
+  bool isCompleted;
   final String durationLabel;
   final Color? highlightColor;
-  // Novos campos para detalhes da tarefa
   final String? description;
   final List<String>? members;
   final String? priority;
@@ -43,7 +41,7 @@ class Task {
     this.statusBoard,
   });
 
-  // Método para criar uma cópia com diferentes valores
+  
   Task copyWith({
     String? id,
     String? title,
@@ -107,10 +105,10 @@ class _TodayTaskPageState extends State<TodayTaskPage>
   late AnimationController _slideController;
   late Animation<Offset> _slideAnimation;
 
-  // State for selected date and tasks
+  
   int _selectedDateIndex = 1; // Default to index 1 (e.g., '20 Sun' to match image)
   late Map<int, List<Task>> _tasksByDateIndex;
-  TaskFilter _currentFilter = TaskFilter.all; // State for current filter
+  TaskFilter _currentFilter = TaskFilter.all; 
 
   @override
   void initState() {
@@ -129,7 +127,7 @@ class _TodayTaskPageState extends State<TodayTaskPage>
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _slideController, curve: Curves.easeOut));
 
-    // Initialize sample task data
+    
     _tasksByDateIndex = {
       0: [ // Tasks for dates[0] - '19 Sat'
         Task(
@@ -233,8 +231,8 @@ class _TodayTaskPageState extends State<TodayTaskPage>
               onPressed: () {Navigator.of(context).pop();},
             ),
             actions: [
-              // _iconCircle(Icons.calendar_today_outlined), // Removido
-              // _iconCircle(Icons.edit), // Removido
+              // _iconCircle(Icons.calendar_today_outlined), 
+              // _iconCircle(Icons.edit), 
             ],
           ),
         ),
@@ -242,7 +240,7 @@ class _TodayTaskPageState extends State<TodayTaskPage>
       body: Stack(
         children: [
           Positioned.fill(
-            child: Stack( // Animated circles background
+            child: Stack( 
               children: [
                 _animatedCircle(20, 50, 6, [Colors.lightBlueAccent, const Color.fromARGB(255, 243, 33, 208)], 0),
                 _animatedCircle(300, 60, 4, [const Color.fromARGB(164, 180, 34, 238), Colors.deepPurpleAccent], 1),
@@ -267,8 +265,6 @@ class _TodayTaskPageState extends State<TodayTaskPage>
                     color: kDarkTextPrimary,
                   ),
                 ),
-                // The '15 task today' text from original code. Could be made dynamic.
-                // For now, keeping it as is, as primary focus is the new task list area.
                 const Text(
                   '15 task today',
                   style: TextStyle(color: kDarkTextSecondary),
@@ -280,7 +276,7 @@ class _TodayTaskPageState extends State<TodayTaskPage>
               ],
             ),
           ),
-          if (_isCardVisible) // Floating card menu logic (unchanged)
+          if (_isCardVisible)
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -409,23 +405,21 @@ class _TodayTaskPageState extends State<TodayTaskPage>
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Marcador de cor vertical à esquerda
           if (task.taskColor != null)
             Container(
-              width: 5, // Largura da barra de cor
-              height: 60, // Altura da barra de cor (ajustar conforme necessário para alinhar com o conteúdo do card)
-              margin: const EdgeInsets.only(right: 8), // Espaçamento entre a barra e o conteúdo
+              width: 5, 
+              height: 60,
+              margin: const EdgeInsets.only(right: 8), 
               decoration: BoxDecoration(
                 color: task.taskColor,
-                borderRadius: BorderRadius.circular(4), // Bordas arredondadas para a barra
+                borderRadius: BorderRadius.circular(4), 
               ),
             )
-          else // Adiciona um espaçamento para manter o alinhamento se não houver cor
-            const SizedBox(width: 5 + 8), // Largura da barra + margem
-
+          else 
+            const SizedBox(width: 5 + 8), 
           Container(
             width: 60,
-            padding: const EdgeInsets.only(top: 4.0), // Align with card content
+            padding: const EdgeInsets.only(top: 4.0), 
             child: Text(
               task.durationLabel,
               textAlign: TextAlign.center,
@@ -517,13 +511,10 @@ class _TodayTaskPageState extends State<TodayTaskPage>
     );
   }
 
-// Function to show the task details popup
 void _showTaskDetailsPopup(BuildContext context, Task task, bool isEditMode) {
-  // Create TextEditingControllers if in edit mode
   final TextEditingController titleController = TextEditingController(text: task.title);
   final TextEditingController descriptionController = TextEditingController(text: task.description ?? '');
-  final TextEditingController timeController = TextEditingController(text: task.time);
-  // Add more controllers for other editable fields as needed
+  final TextEditingController timeController = TextEditingController(text: task.time)
 
   showDialog(
     context: context,
@@ -588,7 +579,6 @@ void _showTaskDetailsPopup(BuildContext context, Task task, bool isEditMode) {
   );
 }
 
-// Helper widget to build detail rows in the popup
 Widget _buildDetailRow(String label, dynamic value, {bool isChip = false, Color? chipColor}) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0),
