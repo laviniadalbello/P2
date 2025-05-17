@@ -106,7 +106,7 @@ class _TodayTaskPageState extends State<TodayTaskPage>
   late Animation<Offset> _slideAnimation;
 
   
-  int _selectedDateIndex = 1; // Default to index 1 (e.g., '20 Sun' to match image)
+  int _selectedDateIndex = 1; (e.g., '20 Sun' to match image)
   late Map<int, List<Task>> _tasksByDateIndex;
   TaskFilter _currentFilter = TaskFilter.all; 
 
@@ -204,8 +204,8 @@ class _TodayTaskPageState extends State<TodayTaskPage>
       {'day': '23', 'week': 'Wed'},
     ];
 
-    // Dynamically update task count text if needed here, or manage within _buildTaskArea
-    // For example: final currentTasks = _tasksByDateIndex[_selectedDateIndex] ?? [];
+    // _buildTaskArea
+    //currentTasks = _tasksByDateIndex[_selectedDateIndex] ?? [];
     // final taskCountString = currentTasks.isEmpty ? "No tasks today" : "${currentTasks.length} task${currentTasks.length == 1 ? '' : 's'} today";
 
     return Scaffold(
@@ -553,10 +553,9 @@ void _showTaskDetailsPopup(BuildContext context, Task task, bool isEditMode) {
             TextButton(
               child: const Text("Salvar", style: TextStyle(color: kAccentPurple)),
               onPressed: () {
-                // Implement save logic here
-                // This requires accessing _TodayTaskPageState.setState, so this popup
-                // might be better as a StatefulWidget or passed a callback.
-                // For now, just printing and popping.
+                // Implementar a lógica aqui
+                 _TodayTaskPageState.setState, so this popup
+                 StatefulWidget or passed a callback.
                 print("Salvar alterações para: ${task.id}");
                 print("Novo título: ${titleController.text}");
                 // Example of how to update (needs access to _tasksByDateIndex and setState):
@@ -566,7 +565,7 @@ void _showTaskDetailsPopup(BuildContext context, Task task, bool isEditMode) {
                 //     title: titleController.text,
                 //     description: descriptionController.text,
                 //     time: timeController.text,
-                //     // ... other fields
+                //     
                 //   );
                 //   // Call setState in the parent widget
                 // }
