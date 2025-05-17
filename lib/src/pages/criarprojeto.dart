@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-// --- Cores (mantidas de CreateProjectScreen, são consistentes com AddTaskPage) ---
+
 const Color kDarkPrimaryBg = Color(0xFF1A1A2E);
 const Color kDarkSurface = Color(0xFF16213E);
 const Color kDarkElementBg = Color(0xFF202A44);
@@ -10,7 +10,7 @@ const Color kAccentSecondary = Color(0xFF2CB67D);
 const Color kDarkTextPrimary = Color(0xFFFFFFFF);
 const Color kDarkTextSecondary = Color(0xFFA0AEC0);
 const Color kDarkBorder = Color(0xFF2D3748);
-// --- Fim das Cores ---
+
 
 class CreateProjectScreen extends StatefulWidget {
   const CreateProjectScreen({super.key});
@@ -27,7 +27,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen>
   final _projectDueDateController = TextEditingController();
   final _memberEmailController = TextEditingController(); // Para o diálogo de adicionar membro
 
-  // Lista de membros adaptada de AddTaskPage (usa Map<String, String>)
+
   List<Map<String, String>> _teamMembers = [];
 
   String? _selectedPriority = 'Média';
@@ -40,14 +40,14 @@ class _CreateProjectScreenState extends State<CreateProjectScreen>
     Colors.teal.shade300,
     Colors.lightBlue.shade300,
   ];
-  // final Random _random = Random(); // Não é mais explicitamente usado após remover a classe Member original
+  // final Random _random = Random(); 
 
-  // --- Variáveis e Controladores do FAB (adaptados de AddTaskPage) ---
-  bool _isFabMenuActive = false; // Controla a visibilidade do menu do FAB
-  late AnimationController _fabMenuSlideController; // Para a animação do menu
+  
+  bool _isFabMenuActive = false; 
+  late AnimationController _fabMenuSlideController; 
   late Animation<Offset> _fabMenuSlideAnimation;
 
-  // Lista para anexos (simulada, como em AddTaskPage)
+  
   List<String> _attachments = [];
 
   @override
@@ -74,7 +74,6 @@ class _CreateProjectScreenState extends State<CreateProjectScreen>
     super.dispose();
   }
 
-  // --- Lógica de Adicionar Membro (adaptada de AddTaskPage) ---
   void _showAddMemberDialog() {
     showDialog(
       context: context,
@@ -229,8 +228,6 @@ class _CreateProjectScreenState extends State<CreateProjectScreen>
       },
     );
   }
-
-  // --- Widgets do FAB e Menu Deslizante (adaptados de AddTaskPage) ---
   void _toggleFabMenuVisibility() {
     if (mounted) {
       setState(() {
@@ -267,7 +264,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen>
 
   Widget _buildFabSlidingMenu() {
     return Positioned(
-      bottom: 80, // Ajuste conforme a altura da BottomAppBar
+      bottom: 80, 
       left: 30,
       right: 30,
       child: SlideTransition(
@@ -346,7 +343,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen>
   }
 
   void _pickFiles() async {
-    // Simulação de anexar arquivos, como em AddTaskPage
+    
     if (mounted) {
       setState(() {
         _attachments.add("document_${_attachments.length + 1}.pdf");
@@ -357,9 +354,9 @@ class _CreateProjectScreenState extends State<CreateProjectScreen>
     }
     print("Função _pickFiles chamada.");
   }
-  // --- Fim dos Widgets do FAB ---
+  
 
-  // --- Widgets da Seção de Membros (adaptados de AddTaskPage) ---
+  
   Widget _buildTeamMemberSection() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -416,8 +413,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen>
       ),
     );
   }
-  // --- Fim da Seção de Membros ---
-
+  
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -570,7 +566,6 @@ class _CreateProjectScreenState extends State<CreateProjectScreen>
     );
   }
 
-  // Widgets mantidos de CreateProjectScreen para Prioridade e Cor
   Widget _buildPrioritySelector() {
     final priorities = ['Baixa', 'Média', 'Alta', 'Urgente'];
     return DropdownButtonFormField<String>(
@@ -626,7 +621,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen>
                 color: color,
                 shape: BoxShape.circle,
                 border: isSelected
-                    ? Border.all(color: kDarkTextPrimary.withOpacity(0.8), width: 2.5) // Ajuste na cor da borda para melhor visibilidade
+                    ? Border.all(color: kDarkTextPrimary.withOpacity(0.8), width: 2.5) 
                     : Border.all(color: Colors.transparent, width: 0),
                 boxShadow: isSelected
                     ? [BoxShadow(color: color.withOpacity(0.5), blurRadius: 5, spreadRadius: 1)]
