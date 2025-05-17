@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'dart:math'; // Kept for consistency, though not directly used for event color if predefined
+import 'dart:math'; 
 
-// --- Cores (mantidas de CreateProjectScreen) ---
+
 const Color kDarkPrimaryBg = Color(0xFF1A1A2E);
 const Color kDarkSurface = Color(0xFF16213E);
 const Color kDarkElementBg = Color(0xFF202A44);
@@ -10,7 +10,6 @@ const Color kAccentSecondary = Color(0xFF2CB67D);
 const Color kDarkTextPrimary = Color(0xFFFFFFFF);
 const Color kDarkTextSecondary = Color(0xFFA0AEC0);
 const Color kDarkBorder = Color(0xFF2D3748);
-// --- Fim das Cores ---
 
 class CreateEventPage extends StatefulWidget {
   const CreateEventPage({super.key});
@@ -30,7 +29,7 @@ class _CreateEventPageState extends State<CreateEventPage>
   final _eventEndTimeController = TextEditingController();
   final _eventLocationController = TextEditingController();
   final _eventNotesController = TextEditingController();
-  final _participantEmailController = TextEditingController(); // Para o diálogo de adicionar participante
+  final _participantEmailController = TextEditingController(); 
 
   List<Map<String, String>> _participants = [];
 
@@ -42,7 +41,7 @@ class _CreateEventPageState extends State<CreateEventPage>
     Colors.orangeAccent.shade200,
     Colors.teal.shade300,
     Colors.lightBlue.shade300,
-    Colors.redAccent.shade200, // Added more variety
+    Colors.redAccent.shade200, 
     Colors.amber.shade300,
   ];
 
